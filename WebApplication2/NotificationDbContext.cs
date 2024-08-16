@@ -33,6 +33,11 @@ public class SmsNotification
     public required string PhoneNumber { get; set; }
     public required string Message { get; set; }
     public SmsNotificationStatus Status { get; set; }
+
+    // The purpose of metadata here is for the consumer to store the original context
+    // That way they do not need to track this notification ID on their end
+    // They could include a type and ID, or many IDs if they want, and if we send this
+    // Along in the business event it can make processing very easy
     public string? Metadata { get; set; }
 
     public List<SmsNotificationAction>? Actions { get; set; }

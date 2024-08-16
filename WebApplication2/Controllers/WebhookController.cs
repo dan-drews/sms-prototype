@@ -17,7 +17,7 @@ public class WebhookController : ControllerBase
     [HttpPost]
     public async Task<string> ProcessWebhookAsync([FromBody] SmsWebhook request)
     {
-
+        // In reality, here we'd also have to check the pool to see if the response is valid for a given pool.
         var smsNotifications = await _notificationDbContext.SmsNotifications.Include(x => x.Actions).Where(x => x.PhoneNumber == request.From && x.Status == SmsNotificationStatus.Active).ToListAsync();
 
         if (!smsNotifications.Any())
